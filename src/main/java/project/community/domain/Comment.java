@@ -9,16 +9,13 @@ import static jakarta.persistence.FetchType.*;
 
 @Entity
 @Getter
-public class Comment {
+public class Comment extends BaseEntity {
 
     @Id
     @GeneratedValue
     @Column(name = "comment_id")
     private Long id;
     private String content;
-
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
@@ -34,8 +31,6 @@ public class Comment {
         comment.content = content;
         comment.user = user;
         comment.post = post;
-        comment.createdDate = LocalDateTime.now();
-        comment.modifiedDate = LocalDateTime.now();
         return comment;
     }
 

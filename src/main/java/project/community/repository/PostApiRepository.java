@@ -1,15 +1,10 @@
-package project.community.repository.api;
+package project.community.repository;
 
-import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
-import org.springframework.expression.spel.ast.Projection;
 import org.springframework.stereotype.Repository;
-import project.community.api.PostDto;
-import project.community.api.PostListDto;
-import project.community.domain.QPost;
-import project.community.domain.QUser;
+import project.community.dto.PostDto;
+import project.community.domain.Post;
 
 import java.util.List;
 
@@ -43,5 +38,13 @@ public class PostApiRepository {
                 .join(post.user, user)
                 .where(post.id.eq(id))
                 .fetchOne();
+    }
+
+    public List<Post> findByWriter(String writer) {
+        return query.select(post)
+                .from(post)
+                .join(user).fetchJoin()
+                .where(user.name.eq(writer))
+                .fetch();
     }
 }

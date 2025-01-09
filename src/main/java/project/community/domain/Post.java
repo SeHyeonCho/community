@@ -12,7 +12,7 @@ import static java.time.LocalDateTime.*;
 
 @Entity
 @Getter
-public class Post {
+public class Post extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -20,9 +20,6 @@ public class Post {
     private Long id;
     private String title;
     private String content;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
-
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -39,8 +36,6 @@ public class Post {
         post.title = title;
         post.content = content;
         post.assignUser(user);
-        post.createdDate = now();
-        post.modifiedDate = now();
         return post;
     }
 
@@ -50,8 +45,6 @@ public class Post {
         post.content = content;
         post.assignUser(user);
         post.assignCategory(category);
-        post.createdDate = now();
-        post.modifiedDate = now();
         return post;
     }
 

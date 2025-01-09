@@ -3,28 +3,26 @@ package project.community.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.community.api.PostCreateDto;
-import project.community.api.PostDto;
-import project.community.api.PostListDto;
+import project.community.dto.PostCreateDto;
+import project.community.dto.PostDto;
+import project.community.dto.PostListDto;
 import project.community.domain.Post;
 import project.community.domain.User;
-import project.community.repository.CommentRepository;
 import project.community.repository.PostRepository;
 import project.community.repository.UserRepository;
-import project.community.repository.api.PostApiRepository;
-
-import java.util.List;
+import project.community.repository.PostApiRepository;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class PostApiService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final PostApiRepository postApiRepository;
 
+    @Transactional
     public Long savePost(PostCreateDto postCreateDto) {
-        User writer = userRepository.findById(postCreateDto.getWriterId());
+        User writer = userRepository.findById(postCreateDto.getWriterId()).get();
         Post newPost = Post.createPost(postCreateDto.getTitle(), postCreateDto.getContent(), writer);
         postRepository.save(newPost);
         return newPost.getId();
@@ -38,6 +36,7 @@ public class PostApiService {
         return postApiRepository.findById(id);
     }
 
+    @Transactional
     public void delete(Post post) {
         postRepository.delete(post);
     }

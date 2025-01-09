@@ -1,10 +1,6 @@
-package project.community.api;
+package project.community.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import project.community.domain.Post;
 
 import java.time.LocalDateTime;
 

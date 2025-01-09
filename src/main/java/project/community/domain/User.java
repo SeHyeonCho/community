@@ -12,7 +12,7 @@ import static java.time.LocalDateTime.*;
 @Entity
 @Getter
 @Table(name = "USERS")
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -21,9 +21,6 @@ public class User {
     private String name;
     private String password;
     private String email;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
-
     @OneToMany(mappedBy = "user")
     private List<Post> postList = new ArrayList<>();
 
@@ -35,8 +32,6 @@ public class User {
         user.name = name;
         user.password = password;
         user.email = email;
-        user.createdDate = now();
-        user.modifiedDate = now();
         return user;
     }
 

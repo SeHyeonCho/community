@@ -1,20 +1,19 @@
-package project.community.api;
+package project.community.controller;
 
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import project.community.domain.Post;
-import project.community.repository.api.PostApiRepository;
+import project.community.dto.PostCreateDto;
+import project.community.dto.PostDto;
+import project.community.dto.PostListDto;
 import project.community.service.PostApiService;
 import project.community.service.PostService;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/posts")
+@RequestMapping("/api/posts")
 public class PostApiController {
 
     private final PostApiService postApiService;

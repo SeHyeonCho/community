@@ -38,7 +38,7 @@ class PostRepositoryTest {
         //then
         assertThat(savePost.getId()).isEqualTo(saveId);
         log.info("savePost.Id = {}", savePost.getId());
-        assertThat(savePost.getUser().getName()).isEqualTo(userRepository.findById(userId).getName());
+        assertThat(savePost.getUser().getName()).isEqualTo(userRepository.findById(userId).get().getName());
         log.info("savePost.user.name = {}", savePost.getUser().getName());
         assertThat(savePost.getTitle()).isEqualTo(title);
         log.info("savePost.title = {}", savePost.getTitle());
