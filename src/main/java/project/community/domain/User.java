@@ -21,10 +21,10 @@ public class User extends BaseEntity {
     private String name;
     private String password;
     private String email;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Post> postList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Comment> commentList = new ArrayList<>();
 
     public static User createUser(String name, String password, String email) {
