@@ -2,12 +2,10 @@ package project.community.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import project.community.domain.common.BaseEntity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.LocalDateTime.*;
 
 @Entity
 @Getter

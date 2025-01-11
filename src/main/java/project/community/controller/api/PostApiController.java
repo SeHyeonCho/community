@@ -1,14 +1,14 @@
-package project.community.controller;
+package project.community.controller.api;
 
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import project.community.domain.Post;
-import project.community.dto.PostCreateDto;
-import project.community.dto.PostDto;
-import project.community.dto.PostListDto;
-import project.community.service.PostApiService;
+import project.community.dto.post.PostCreateDto;
+import project.community.dto.post.PostDto;
+import project.community.dto.post.PostListDto;
+import project.community.service.api.PostApiService;
 import project.community.service.PostService;
 
 @RestController

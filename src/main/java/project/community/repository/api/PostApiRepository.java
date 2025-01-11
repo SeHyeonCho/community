@@ -1,9 +1,9 @@
-package project.community.repository;
+package project.community.repository.api;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
-import project.community.dto.PostDto;
+import project.community.dto.post.PostDto;
 import project.community.domain.Post;
 
 import java.util.List;

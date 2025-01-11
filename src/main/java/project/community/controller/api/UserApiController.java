@@ -1,20 +1,16 @@
-package project.community.controller;
+package project.community.controller.api;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import project.community.domain.User;
-import project.community.dto.UserCreateDto;
-import project.community.dto.UserDto;
-import project.community.dto.UserListDto;
-import project.community.repository.UserRepository;
-import project.community.service.UserApiService;
+import project.community.dto.user.UserCreateDto;
+import project.community.dto.user.UserDto;
+import project.community.dto.user.UserListDto;
+import project.community.service.api.UserApiService;
 import project.community.service.UserService;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

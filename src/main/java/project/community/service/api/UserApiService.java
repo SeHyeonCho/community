@@ -1,13 +1,13 @@
-package project.community.service;
+package project.community.service.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.community.domain.User;
-import project.community.dto.UserCreateDto;
-import project.community.dto.UserDto;
-import project.community.dto.UserListDto;
-import project.community.repository.UserApiRepository;
+import project.community.dto.user.UserCreateDto;
+import project.community.dto.user.UserDto;
+import project.community.dto.user.UserListDto;
+import project.community.repository.api.UserApiRepository;
 
 @Service
 @RequiredArgsConstructor

@@ -1,8 +1,7 @@
-package project.community.dto;
+package project.community.dto.comment;
 
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data

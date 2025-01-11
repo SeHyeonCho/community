@@ -2,8 +2,7 @@ package project.community.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
+import project.community.domain.common.BaseEntity;
 
 import static jakarta.persistence.FetchType.*;
 

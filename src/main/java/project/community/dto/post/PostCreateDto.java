@@ -1,4 +1,4 @@
-package project.community.dto;
+package project.community.dto.post;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

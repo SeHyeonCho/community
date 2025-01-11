@@ -1,10 +1,10 @@
-package project.community.service;
+package project.community.service.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.community.dto.CommentListDto;
-import project.community.repository.CommentApiRepository;
+import project.community.dto.comment.CommentListDto;
+import project.community.repository.api.CommentApiRepository;
 
 @Service
 @RequiredArgsConstructor

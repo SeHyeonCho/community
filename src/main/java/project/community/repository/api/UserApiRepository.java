@@ -1,12 +1,9 @@
-package project.community.repository;
+package project.community.repository.api;
 
-import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import project.community.domain.QUser;
-import project.community.dto.UserDto;
+import project.community.dto.user.UserDto;
 
 import java.util.List;
 

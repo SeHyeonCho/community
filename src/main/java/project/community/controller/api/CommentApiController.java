@@ -1,12 +1,12 @@
-package project.community.controller;
+package project.community.controller.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import project.community.dto.CommentListDto;
-import project.community.service.CommentApiService;
+import project.community.dto.comment.CommentListDto;
+import project.community.service.api.CommentApiService;
 
 @RestController
 @RequiredArgsConstructor
