@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"></link>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="/" class="nav-link text-white">Home</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <h1 class="text-center">회원 가입</h1>
+  <form method="post" th:object="${user}">
+    <div class="mb-3 mt-3">
+      <label th:for="name" class="form-label">이름:</label>
+      <input type="text" class="form-control" th:field="*{name}">
+      <div th:errors="*{name}" class="text-danger"></div>
+    </div>
+    <div class="mb-3 mt-3">
+      <label th:for="password" class="form-label">비밀번호:</label>
+      <input type="text" class="form-control" th:field="*{password}">
+      <div th:errors="*{password}" class="text-danger"></div>
+    </div>
+    <div class="mb-3 mt-3">
+      <label th:for="email" class="form-label">이메일:</label>
+      <input type="email" class="form-control" th:field="*{email}">
+      <div th:errors="*{email}" class="text-danger"></div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">제출</button>
+  </form>
+</div>
+</body>
+</html>
