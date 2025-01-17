@@ -40,6 +40,7 @@ public class UserController {
     public String userCreate(@ModelAttribute("user") @Valid UserCreateDto userCreateDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.info("user has Error : {}", bindingResult.getFieldError());
+//            bindingResult.err
             return "users/userCreateForm";
         }
         User user = User.createUser(userCreateDto.getName(), userCreateDto.getPassword(), userCreateDto.getEmail());

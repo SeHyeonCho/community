@@ -4,7 +4,6 @@ spring:
     password:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:tcp://localhost/~/community
-
   jpa:
     hibernate:
       ddl-auto: create
@@ -13,9 +12,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
+  messages:
+    basename: messages, errors
 logging:
   level:
     org.hibernate.SQL: trace
     org.hibernate.orm.jdbc : trace
     org.hibernate.type.descriptor: trace
+

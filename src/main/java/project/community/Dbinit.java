@@ -20,7 +20,7 @@ import static project.community.domain.User.*;
  * USER - [userA, userB, userC]
  * POST - []
  */
-@Component
+//@Component
 @RequiredArgsConstructor
 public class Dbinit {
 

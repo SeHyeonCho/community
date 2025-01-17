@@ -12,6 +12,6 @@ public class UserCreateDto {
 
     @Length(min = 4)
     private String password;
-    @NotEmpty
+    @NotEmpty(message = "이메일은 필수 입니다.")
     private String email;
 }
