@@ -1,5 +1,6 @@
 package project.community.controller;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import project.community.domain.User;
+import project.community.dto.SessionConst;
 import project.community.dto.user.UserCreateDto;
 import project.community.dto.user.UserLoginDto;
 import project.community.service.UserService;
@@ -38,15 +40,32 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String userLogin(@Valid @ModelAttribute("user") UserLoginDto loginDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors() || !userService.loginValidation(loginDto)) {
-            bindingResult.reject("login","아이디 또는 비밀번호가 일치하지 않습니다.");
+    public String userLogin(
+            @Valid @ModelAttribute("user") UserLoginDto loginDto,
+            BindingResult bindingResult,
+            HttpSession session) {
+        if (bindingResult.hasErrors()) {
             return "users/userLoginForm";
         }
 
+        User user = userService.loginValidation(loginDto);
+        if (user == null) {
+            bindingResult.reject("login","아이디 또는 비밀번호가 일치하지 않습니다.");
+            return "users/userLoginForm";
+        }
         log.info("로그인 성공 id={}, password={}", loginDto.getId(), loginDto.getPassword());
-        return "home";
+
+        session.setAttribute(SessionConst.LOGIN_USER, user);
+        return "redirect:/";
     }
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
+
 
     @GetMapping("/create")
     public String userCreateForm(@ModelAttribute("user") UserCreateDto userCreateDto) {

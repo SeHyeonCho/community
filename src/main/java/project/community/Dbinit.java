@@ -20,7 +20,7 @@ import static project.community.domain.User.*;
  * USER - [userA, userB, userC]
  * POST - []
  */
-//@Component
+@Component
 @RequiredArgsConstructor
 public class Dbinit {
 
@@ -42,32 +42,34 @@ public class Dbinit {
 
         public void init() {
 
-            for (int i = 1; i <= 100; i++) {
-                User user = createUser("user" + i, i + "", "" + i + i + i + "@" + i + ".com");
-                userRepository.save(user);
+//            for (int i = 1; i <= 100; i++) {
+//                User user = createUser("user" + i, i + "", "" + i + i + i + "@" + i + ".com");
+//                userRepository.save(user);
+//
+//            }
+//
+//
+//
+//            for (int i = 1; i <= 100; i++) {
+//                int rand = (int) (Math.random() * 100) + 1;
+//                User user = userRepository.findByName("user" + rand);
+//
+//                Post post = createPost("게시판 제목" + i, i + "번째로 쓰인 글 입니다.", user);
+//                postRepository.save(post);
+//            }
+//
+//            for (int i = 1; i <= 1000; i++) {
+//                int rand1 = (int) (Math.random() * 100) + 1;
+//                User user = userRepository.findByName("user" + rand1);
+//
+//                int rand2 = (int) (Math.random() * 100) + 1;
+//                Post post = postRepository.findByTitle("게시판 제목" + rand2);
+//
+//                Comment comment = createComment(i + "번째로 쓰인 댓글 입니다.", user, post);
+//                commentRepository.save(comment);
+//            }
 
-            }
-
-
-
-            for (int i = 1; i <= 100; i++) {
-                int rand = (int) (Math.random() * 100) + 1;
-                User user = userRepository.findByName("user" + rand);
-
-                Post post = createPost("게시판 제목" + i, i + "번째로 쓰인 글 입니다.", user);
-                postRepository.save(post);
-            }
-
-            for (int i = 1; i <= 1000; i++) {
-                int rand1 = (int) (Math.random() * 100) + 1;
-                User user = userRepository.findByName("user" + rand1);
-
-                int rand2 = (int) (Math.random() * 100) + 1;
-                Post post = postRepository.findByTitle("게시판 제목" + rand2);
-
-                Comment comment = createComment(i + "번째로 쓰인 댓글 입니다.", user, post);
-                commentRepository.save(comment);
-            }
+            userRepository.save(createUser("1","1234","1@1.com"));
 
         }
     }

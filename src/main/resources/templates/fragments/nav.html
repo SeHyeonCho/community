@@ -8,14 +8,23 @@
             </li>
         </ul>
         <div class="d-flex">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="/users/login" class="nav-link">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/users/create" class="nav-link">회원가입</a>
-                </li>
-            </ul>
+            <div th:if="${isLogin == null or !isLogin}">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/users/login" class="nav-link">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/create" class="nav-link">회원가입</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div th:if="${isLogin != null and isLogin}">
+                <form method="post" action="users/logout">
+                    <button type="submit" class="btn nav-link">로그아웃</button>
+                </form>
+            </div>
+
         </div>
     </div>
 

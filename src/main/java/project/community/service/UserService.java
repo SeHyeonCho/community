@@ -33,20 +33,12 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    public boolean loginValidation(UserLoginDto userLoginDto) {
+    public User loginValidation(UserLoginDto userLoginDto) {
         Long id = userLoginDto.getId();
         String password = userLoginDto.getPassword();
 
         Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()) {
-            return false;
-        } else {
-            if (user.get().getPassword().equals(password)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        return user.orElse(null);
     }
 
 }
