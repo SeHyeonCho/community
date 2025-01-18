@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.community.domain.User;
+import project.community.dto.user.UserLoginDto;
 import project.community.repository.UserRepository;
 
 import java.util.List;
@@ -30,6 +31,22 @@ public class UserService {
     public void delete(Long id) {
         User user = userRepository.findById(id).get();
         userRepository.delete(user);
+    }
+
+    public boolean loginValidation(UserLoginDto userLoginDto) {
+        Long id = userLoginDto.getId();
+        String password = userLoginDto.getPassword();
+
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            return false;
+        } else {
+            if (user.get().getPassword().equals(password)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
 }
