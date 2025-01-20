@@ -6,19 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import project.community.domain.User;
 import project.community.dto.SessionConst;
+import project.community.interceptor.Login;
 
 @Controller
 public class HomeController {
 
     @GetMapping("/")
     public String home(
-            @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User user, Model model) {
-        if (user != null) {
-            model.addAttribute("isLogin", true);
-        } else {
-            model.addAttribute("isLogin", false);
-        }
+            @Login User user, Model model) {
+        model.addAttribute("isLogin", user != null);
         return "home";
-
     }
+
 }

@@ -10,6 +10,7 @@
       <th>#</th>
       <th>이름</th>
       <th>이메일</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -17,9 +18,22 @@
       <td th:text="${user.id}"></td>
       <td th:text="${user.name}"></td>
       <td th:text="${user.email}"></td>
+      <td>
+        <button type="button" th:onclick="|remove(${user.id})|" class="btn btn-danger">삭제</button>
+      </td>
     </tr>
     </tbody>
   </table>
 </div>
 </body>
 </html>
+
+<script>
+  function remove(id) {
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/users/" + id + "/cancel");
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>

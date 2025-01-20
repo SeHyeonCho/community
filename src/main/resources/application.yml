@@ -20,3 +20,5 @@ logging:
     org.hibernate.orm.jdbc : trace
     org.hibernate.type.descriptor: trace
 
+
+
