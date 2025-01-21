@@ -27,7 +27,8 @@ public class LoginFilter implements Filter {
                 HttpSession session = request.getSession(false);
                 if (session == null || session.getAttribute(SessionConst.LOGIN_USER) == null) {
                     log.info("미인증 사용자");
-                    response.sendRedirect("/users/login?redirectURI=" + requestURI);
+                    response.sendRedirect("/" +
+                            "users/login?redirectURI=" + requestURI);
                     return;
                 }
             }

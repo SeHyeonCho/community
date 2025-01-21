@@ -1,4 +1,4 @@
-package project.community.interceptor;
+package project.community.resolver;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -9,6 +9,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import project.community.domain.User;
 import project.community.dto.SessionConst;
+import project.community.interceptor.Login;
 
 public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
     @Override

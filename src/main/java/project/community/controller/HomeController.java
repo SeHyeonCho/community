@@ -18,4 +18,9 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/exception")
+    public void exception() {
+        throw new IllegalArgumentException();
+    }
+
 }

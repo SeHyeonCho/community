@@ -19,6 +19,8 @@ logging:
     org.hibernate.SQL: trace
     org.hibernate.orm.jdbc : trace
     org.hibernate.type.descriptor: trace
-
-
+server:
+  error:
+    whitelabel:
+      enabled: false
 
