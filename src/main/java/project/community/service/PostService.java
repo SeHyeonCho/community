@@ -1,8 +1,11 @@
 package project.community.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.community.domain.Category;
 import project.community.domain.Post;
 import project.community.domain.User;
 import project.community.repository.CommentRepository;
@@ -40,5 +43,15 @@ public class PostService {
     @Transactional(readOnly = true)
     public List<Post> findAll() {
         return postRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Post> findAllPage(int page, int offset) {
+        return postRepository.findAll(PageRequest.of(page, offset));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Post> findAllPageByCategory(Category category, int page, int offset) {
+        return postRepository.findAll(PageRequest.of(page, offset));
     }
 }

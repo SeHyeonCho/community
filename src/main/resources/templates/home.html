@@ -4,6 +4,32 @@
 <body>
 <nav th:replace="~{fragments/nav.html :: nav}"></nav>
 
+<div class="container-fluid p-5 mt-5">
+    <div class="container-fluid row gap-4 px-5">
+        <div class="col" >
+            <div class="d-flex justify-content-between">
+                <h3>자유게시판</h3>
+                <a href="/posts/category" class="opacity-50 mt-2 text-decoration-none text-dark">더보기 ></a>
+            </div>
+            <ul class="list-group">
+                <li th:each="post : ${posts}" class="list-group-item border mb-2 border-info rou">
+                    <div class="d-flex justify-content-between">
+                        <a th:text="${post.title}" th:href="@{/posts/{postId}(postId=${post.id})}"
+                           class="fw-bold link-primary text-dark text-decoration-none"></a>
+                        <div>
+                            <a th:text="${post.user.name}" th:href="@{/users/{userId}(userId=${post.user.id})}"
+                               class="link-primary text-dark text-decoration-none"></a>
+                        </div>
+                    </div>
+                    <div th:text="${post.content}"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            <h3 class="py-2 bg-info text-white rounded-4 text-center">유머 게시판</h3>
+        </div>
+    </div>
+</div>
 <div th:if="${isLogin != null and isLogin}" class="p-5 m-5">
     <a th:href="@{/users}"> 유저 리스트 </a>
 </div>
