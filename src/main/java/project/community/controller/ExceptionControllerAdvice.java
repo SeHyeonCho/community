@@ -23,9 +23,4 @@ public class ExceptionControllerAdvice {
         ErrorData errorData = new ErrorData("IllegalArgument", ex.getMessage());
         return new ResponseEntity<>(errorData, HttpStatus.BAD_REQUEST);
     }
-
-    @ModelAttribute
-    public void loginInfo(@Login User user, Model model) {
-        model.addAttribute("isLogin", user != null);
-    }
 }

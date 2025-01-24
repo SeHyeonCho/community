@@ -1,6 +1,8 @@
 package project.community.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.community.domain.User;
@@ -13,8 +15,10 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     public List<User> findAll() {
@@ -23,7 +27,7 @@ public class UserService {
 
     @Transactional
     public Long save(User user) {
-        userRepository.save(user);
+        userRepository.save(User.createUser(user.getName(), passwordEncoder.encode(user.getPassword()), user.getEmail()));
         return user.getId();
     }
 
@@ -34,11 +38,16 @@ public class UserService {
     }
 
     public User loginValidation(UserLoginDto userLoginDto) {
-        Long id = userLoginDto.getId();
-        String password = userLoginDto.getPassword();
+        Long username = userLoginDto.getUsername();
+        Optional<User> user = userRepository.findById(username);
 
-        Optional<User> user = userRepository.findById(id);
-        return user.orElse(null);
+        boolean matches = passwordEncoder.matches(userLoginDto.getPassword(), user.get().getPassword());
+
+        if (matches) {
+            return user.get();
+        } else {
+            return null;
+        }
     }
 
 }

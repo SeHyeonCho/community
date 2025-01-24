@@ -18,8 +18,7 @@ public class HomeController {
     private final PostService postService;
 
     @GetMapping("/")
-    public String home(
-            @Login User user, Model model) {
+    public String home(Model model) {
         List<Post> posts = postService.findAllPage(0, 5).getContent();
         model.addAttribute("posts", posts);
         return "home";

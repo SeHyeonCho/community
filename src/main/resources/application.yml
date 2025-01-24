@@ -19,6 +19,7 @@ logging:
     org.hibernate.SQL: trace
     org.hibernate.orm.jdbc : trace
     org.hibernate.type.descriptor: trace
+    org.springframework.security: debug
 server:
   error:
     whitelabel:

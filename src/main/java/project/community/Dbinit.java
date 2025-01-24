@@ -10,6 +10,7 @@ import project.community.domain.User;
 import project.community.repository.CommentRepository;
 import project.community.repository.PostRepository;
 import project.community.repository.UserRepository;
+import project.community.service.UserService;
 
 import static project.community.domain.Comment.*;
 import static project.community.domain.Post.*;
@@ -39,11 +40,12 @@ public class Dbinit {
         private final CommentRepository commentRepository;
         private final PostRepository postRepository;
         private final UserRepository userRepository;
+        private final UserService userService;
 
         public void init() {
             for (int i = 1; i <= 10; i++) {
                 User user = createUser("user" + i, i + "", "" + i + i + i + "@" + i + ".com");
-                userRepository.save(user);
+                userService.save(user);
             }
 
             for (int i = 1; i <= 10; i++) {
@@ -53,7 +55,8 @@ public class Dbinit {
                 Post post = createPost("게시판 제목" + i, i + "번째로 쓰인 글 입니다.", user);
                 postRepository.save(post);
             }
-            userRepository.save(createUser("1","1234","1@1.com"));
+
+            userService.save(createUser("1","1234","1@1.com"));
 
         }
     }

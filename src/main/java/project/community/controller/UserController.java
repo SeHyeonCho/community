@@ -36,12 +36,14 @@ public class UserController {
         return "users/userLoginForm";
     }
 
-    @PostMapping("/login")
+//    @PostMapping("/login")
     public String userLogin(
             @Valid @ModelAttribute("user") UserLoginDto loginDto,
             BindingResult bindingResult,
             @RequestParam(defaultValue = "/") String redirectURI,
             HttpSession session) {
+
+        log.info("로그인 요청");
         if (bindingResult.hasErrors()) {
             return "users/userLoginForm";
         }
@@ -51,13 +53,13 @@ public class UserController {
             bindingResult.reject("login", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "users/userLoginForm";
         }
-        log.info("로그인 성공 id={}, password={}", loginDto.getId(), loginDto.getPassword());
+        log.info("로그인 성공 id={}, password={}", loginDto.getUsername(), loginDto.getPassword());
 
         session.setAttribute(SessionConst.LOGIN_USER, user);
         return "redirect:" + redirectURI;
 //        return "redirect:/users";
     }
-    @PostMapping("/logout")
+//    @PostMapping("/logout")
     public String logout(HttpSession session) {
         if (session != null) {
             session.invalidate();
@@ -77,6 +79,7 @@ public class UserController {
             log.info("user has Error : {}", bindingResult.getFieldError());
             return "users/userCreateForm";
         }
+
         User user = User.createUser(userCreateDto.getName(), userCreateDto.getPassword(), userCreateDto.getEmail());
         userService.save(user);
         return "redirect:/users";

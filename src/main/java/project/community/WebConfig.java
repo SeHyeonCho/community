@@ -5,17 +5,20 @@ import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import project.community.domain.User;
 import project.community.filter.LogFilter;
 import project.community.resolver.LoginArgumentResolver;
-import project.community.resolver.MyExceptionResolver;
 
+import java.util.Collection;
 import java.util.List;
 
 @Configuration
-public class Config implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 //    @Override
 //    public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(new LoginInterceptor())
@@ -32,6 +35,8 @@ public class Config implements WebMvcConfigurer {
         filterRegistrationBean.setOrder(1);
         filterRegistrationBean.addUrlPatterns("/*");
         filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
+
+
         return filterRegistrationBean;
     }
 
@@ -44,4 +49,5 @@ public class Config implements WebMvcConfigurer {
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
 //        resolvers.add(new MyExceptionResolver());
     }
+
 }
