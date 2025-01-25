@@ -24,6 +24,9 @@ public class UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+    public User findByName(String name) {
+        return userRepository.findByName(name);
+    }
 
     @Transactional
     public Long save(User user) {

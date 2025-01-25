@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:insert="~{fragments/header.html :: header}"></head>
 <body>
 <nav th:replace="~{fragments/nav.html :: nav}"></nav>
@@ -30,7 +31,7 @@
         </div>
     </div>
 </div>
-<div th:if="${isLogin != null and isLogin}" class="p-5 m-5">
+<div sec:authorize="isAuthenticated()" class="p-5 m-5">
     <a th:href="@{/users}"> 유저 리스트 </a>
 </div>
 </body>

@@ -16,6 +16,7 @@ public class User extends BaseEntity {
     @GeneratedValue
     @Column(name = "user_id")
     private Long id;
+    @Column(unique = true)
     private String name;
     private String password;
     private String email;
@@ -30,6 +31,12 @@ public class User extends BaseEntity {
         user.name = name;
         user.password = password;
         user.email = email;
+        return user;
+    }
+
+    public static User createUser(String name) {
+        User user = new User();
+        user.name = name;
         return user;
     }
 

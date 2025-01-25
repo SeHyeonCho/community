@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String userLoginForm(@ModelAttribute("user") UserLoginDto loginDto) {
+    public String userLoginForm() {
         return "users/userLoginForm";
     }
 
@@ -77,6 +77,12 @@ public class UserController {
     public String userCreate(@ModelAttribute("user") @Valid UserCreateDto userCreateDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.info("user has Error : {}", bindingResult.getFieldError());
+            return "users/userCreateForm";
+        }
+
+        if (userService.findByName(userCreateDto.getName()) != null) {
+            log.info("동일한 닉네임이 존재합니다.");
+            bindingResult.rejectValue("name", "noUniqueName", "이미 존재하는 닉네임 입니다.");
             return "users/userCreateForm";
         }
 

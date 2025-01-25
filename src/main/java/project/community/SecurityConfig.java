@@ -27,7 +27,7 @@ public class SecurityConfig {
                         "/users/create", "/users/logout", "/css/*").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin((form) -> form.loginPage("/users/login").loginProcessingUrl("/users/login"))
+                .formLogin((form) -> form.loginPage("/users/login"))
                 .logout((logout) -> logout
                         .logoutUrl("/users/logout")
                         .logoutSuccessUrl("/users/login")
