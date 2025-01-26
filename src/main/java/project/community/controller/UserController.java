@@ -88,7 +88,7 @@ public class UserController {
 
         User user = User.createUser(userCreateDto.getName(), userCreateDto.getPassword(), userCreateDto.getEmail());
         userService.save(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @PostMapping("/{userId}/cancel")

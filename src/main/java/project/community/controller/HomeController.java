@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import project.community.domain.Post;
-import project.community.domain.User;
-import project.community.interceptor.Login;
+import project.community.dto.CategoryName;
 import project.community.service.PostService;
 
 import java.util.List;
@@ -19,8 +18,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<Post> posts = postService.findAllPage(0, 5).getContent();
-        model.addAttribute("posts", posts);
+        List<Post> freePosts = postService.findPageAllByCategoryName(CategoryName.FREE, 0, 5).getContent();
+        model.addAttribute("freePosts", freePosts);
+        List<Post> funPosts = postService.findPageAllByCategoryName(CategoryName.FUN, 0, 5).getContent();
+        model.addAttribute("funPosts", funPosts);
         return "home";
     }
 

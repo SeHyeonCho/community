@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import project.community.domain.Category;
 import project.community.domain.Post;
 import project.community.domain.User;
+import project.community.dto.CategoryName;
 import project.community.repository.CommentRepository;
 import project.community.repository.PostRepository;
 import project.community.repository.UserRepository;
@@ -46,8 +47,13 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Post> findAllPage(int page, int offset) {
+    public Page<Post> findPageAll(int page, int offset) {
         return postRepository.findAll(PageRequest.of(page, offset));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Post> findPageAllByCategoryName(CategoryName name, int page, int offset) {
+        return postRepository.findAllByCategoryName(name, PageRequest.of(page, offset));
     }
 
     @Transactional(readOnly = true)
