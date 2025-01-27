@@ -60,4 +60,9 @@ public class PostService {
     public Page<Post> findAllPageByCategory(Category category, int page, int offset) {
         return postRepository.findAll(PageRequest.of(page, offset));
     }
+
+    public Long deletePost(Long postId) {
+        postRepository.deleteById(postId);
+        return postId;
+    }
 }

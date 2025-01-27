@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="~{fragments/header.html :: header}"></head>
+<body>
+<nav th:replace="~{fragments/nav.html :: nav}"></nav>
+<div class>
+  <div class="container mt-5 p-3">
+    <table class="table text-center border-info border-opacity-50">
+      <thead>
+      <tr>
+        <th colspan="2">제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="post : ${posts}">
+        <th th:text="${post.id}"></th>
+        <th th:text="${post.title}"></th>
+        <th th:text="${post.user.name}"></th>
+        <th th:text="${#temporals.format(post.createdDate,'yyyy/MM/dd')}"></th>
+        <th>
+          <button sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger"
+                  th:onclick="|remove(${post.id})|">삭제</button>
+        </th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
+<script>
+  function remove(id) {
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/posts/" + id + "/delete");
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>
