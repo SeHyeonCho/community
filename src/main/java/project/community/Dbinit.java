@@ -2,11 +2,13 @@ package project.community;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import project.community.domain.Category;
 import project.community.domain.Post;
 import project.community.domain.User;
+import project.community.domain.UserRole;
 import project.community.dto.CategoryName;
 import project.community.repository.CategoryRepository;
 import project.community.repository.CommentRepository;
@@ -24,6 +26,7 @@ import static project.community.domain.User.*;
  */
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class Dbinit {
 
     private final DbInitService initService;
@@ -69,7 +72,10 @@ public class Dbinit {
                 postRepository.save(post);
             }
 
-            userService.save(createUser("1","1234","1@1.com"));
+            User admin = createAdmin("1", "1234", "1@1.com");
+            userService.save(admin);
+
+            log.info("user 1 role = {}",admin.getUserRole());
 
         }
     }

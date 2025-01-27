@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.community.domain.User;
+import project.community.domain.UserRole;
 import project.community.dto.user.UserLoginDto;
 import project.community.repository.UserRepository;
 
@@ -30,7 +31,11 @@ public class UserService {
 
     @Transactional
     public Long save(User user) {
-        userRepository.save(User.createUser(user.getName(), passwordEncoder.encode(user.getPassword()), user.getEmail()));
+        if (user.getUserRole() == UserRole.ADMIN) {
+            userRepository.save(User.createAdmin(user.getName(), passwordEncoder.encode(user.getPassword()), user.getEmail()));
+        } else {
+            userRepository.save(User.createUser(user.getName(), passwordEncoder.encode(user.getPassword()), user.getEmail()));
+        }
         return user.getId();
     }
 

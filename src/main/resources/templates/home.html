@@ -50,5 +50,9 @@
 <div sec:authorize="isAuthenticated()" class="p-5 m-5">
     <a th:href="@{/users}"> 유저 리스트 </a>
 </div>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')" class="p-5 m-5">
+    <a href="#">어드민만 보이는 링크 </a>
+</div>
 </body>
 </html>
