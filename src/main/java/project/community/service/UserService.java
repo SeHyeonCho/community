@@ -46,13 +46,13 @@ public class UserService {
     }
 
     public User loginValidation(UserLoginDto userLoginDto) {
-        Long username = userLoginDto.getUsername();
-        Optional<User> user = userRepository.findById(username);
+        String username = userLoginDto.getUsername();
+        User user = userRepository.findByName(username);
 
-        boolean matches = passwordEncoder.matches(userLoginDto.getPassword(), user.get().getPassword());
+        boolean matches = passwordEncoder.matches(userLoginDto.getPassword(), user.getPassword());
 
         if (matches) {
-            return user.get();
+            return user;
         } else {
             return null;
         }
