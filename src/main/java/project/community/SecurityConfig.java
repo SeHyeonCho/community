@@ -22,12 +22,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((requests) -> requests.
-                        /*requestMatchers("/css/**", "/*.ico", "/error", "/", "/users/login",
-                                "/posts", "/users/create", "/users/logout", "/css/*").permitAll()
-                        .anyRequest().authenticated()*/
-                                anyRequest().permitAll()
-                )
+//                .authorizeHttpRequests(
+//                        (requests) -> requests.requestMatchers
+//                                        ("/css/**", "/*.ico", "/error", "/", "/users/login",
+//                                "/posts", "/users/create", "/users/logout", "/css/*").permitAll().anyRequest().authenticated()
+////                                .anyRequest().permitAll()
+//                )
                 .formLogin((form) -> form.loginPage("/users/login"))
                 .logout((logout) -> logout
                         .logoutUrl("/users/logout")
